@@ -48,15 +48,23 @@ def hasDigit(x : String): Boolean = {
 hasDigit("a9a0 00 00 ad2")
 
 
-//6. TODO Consider a Scala function max_ to be completed:
+//6. Consider a Scala function max_ to be completed:
 def max_(xs: List[Int]): Option[Int] = {
   @tailrec
-  def maxAux(m: Int, ys: List[Int]): Option[Int] = ys match {
-    case Nil => ???
-    case x :: t => ???
+  def maxAux(max: Int, ys: List[Int]): Option[Int] = ys match {
+    case Nil => return None
+    case head :: tail =>
+      if(head > tail.max) {
+        return Option{head}
+      } else {
+        maxAux(head, tail)
+      }
   }
-  ???
+
+  return maxAux(Int.MinValue, xs)
 }
+
+max_(List(2,3,1,5,6,88,1,99,11,22,232,3,1,33,44))
 
 
 //7. TODO Consider these calls:
@@ -73,3 +81,34 @@ def max_(xs: List[Int]): Option[Int] = {
 //  lists of generic types and its result should be a String. The arguments of each of the other
 //functions (f1,f2,f3,f4) should be two lists of generic types and their result should be of
 //type String.
+
+def applyF_[T,S](leftHand: List[T], rightHand: List[S])(op: (List[T], List[S]) => String) : String
+
+//TODO acabar este
+def f1[T,S](leftHand: List[T], rightHand: List[S]): String ={
+  val concatList = leftHand ::: rightHand
+  return concatList.mkString
+}
+
+def f2[T,S](leftHand: List[T], rightHand: List[S]): String ={
+  val concatList = leftHand ::: rightHand
+  return concatList.mkString
+}
+
+def f3[T,S](leftHand: List[T], rightHand: List[S]): String = {
+  val concatList = leftHand.reverse ::: rightHand
+  print(concatList)
+  return concatList.mkString
+}
+
+def f4[T,S](leftHand: List[T], rightHand: List[S]): String ={
+  val leftHandSorted = leftHand.map(x => x.toString().sortBy(_.reverseBytes))
+  val concatList = leftHandSorted ::: rightHand
+  return concatList.mkString
+}
+
+
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f1)
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f2)
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f3)
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f4)
