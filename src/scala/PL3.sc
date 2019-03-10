@@ -1,5 +1,53 @@
 import scala.annotation.tailrec
 
+//7. TODO Consider these calls:
+//  applyF_(List(19, 2, 3),List("aa", "b", "c")) (f1)
+//applyF_(List(19, 2, 3),List("aa", "b", "c")) (f2)
+//applyF_(List(19, 2, 3),List("aa", "b", "c")) (f3)
+//applyF_(List(19, 2, 3),List("aa", "b", "c")) (f4)
+//with, respectively, the following results:
+//  res41: String = 19aa2b3c
+//  res42: String = 1923aabc
+//  res43: String = 3219aabc
+//  res44: String = 3291aabc
+//  Specify the functions, knowing that the first argument list of applyF_should specify two
+//  lists of generic types and its result should be a String. The arguments of each of the other
+//functions (f1,f2,f3,f4) should be two lists of generic types and their result should be of
+//type String.
+
+def applyF_[T,S](leftHand: List[T], rightHand: List[S])(op: (List[T], List[S]) => String) : String
+
+//TODO acabar este
+def f1[T,S](leftHand: List[T], rightHand: List[S]): String ={
+  val concatList = leftHand ::: rightHand
+  return concatList.mkString
+}
+
+def f2[T,S](leftHand: List[T], rightHand: List[S]): String ={
+  val concatList = leftHand ::: rightHand
+  return concatList.mkString
+}
+
+def f3[T,S](leftHand: List[T], rightHand: List[S]): String = {
+  val concatList = leftHand.reverse ::: rightHand
+  print(concatList)
+  return concatList.mkString
+}
+
+def f4[T,S](leftHand: List[T], rightHand: List[S]): String ={
+  val leftHandSorted = leftHand.map(x => x.toString().sortBy(_.reverseBytes))
+  val concatList = leftHandSorted ::: rightHand
+  return concatList.mkString
+}
+
+
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f1)
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f2)
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f3)
+applyF_(List(19, 2, 3),List("aa", "b", "c")) (f4)
+
+
+
 val aList:List[Int] = List(1, 2, 3)
 val bList=List("edom", "odsoft", "tap")
 val cList=List('a', 'b')
@@ -66,49 +114,3 @@ def max_(xs: List[Int]): Option[Int] = {
 
 max_(List(2,3,1,5,6,88,1,99,11,22,232,3,1,33,44))
 
-
-//7. TODO Consider these calls:
-//  applyF_(List(19, 2, 3),List("aa", "b", "c")) (f1)
-//applyF_(List(19, 2, 3),List("aa", "b", "c")) (f2)
-//applyF_(List(19, 2, 3),List("aa", "b", "c")) (f3)
-//applyF_(List(19, 2, 3),List("aa", "b", "c")) (f4)
-//with, respectively, the following results:
-//  res41: String = 19aa2b3c
-//  res42: String = 1923aabc
-//  res43: String = 3219aabc
-//  res44: String = 3291aabc
-//  Specify the functions, knowing that the first argument list of applyF_should specify two
-//  lists of generic types and its result should be a String. The arguments of each of the other
-//functions (f1,f2,f3,f4) should be two lists of generic types and their result should be of
-//type String.
-
-def applyF_[T,S](leftHand: List[T], rightHand: List[S])(op: (List[T], List[S]) => String) : String
-
-//TODO acabar este
-def f1[T,S](leftHand: List[T], rightHand: List[S]): String ={
-  val concatList = leftHand ::: rightHand
-  return concatList.mkString
-}
-
-def f2[T,S](leftHand: List[T], rightHand: List[S]): String ={
-  val concatList = leftHand ::: rightHand
-  return concatList.mkString
-}
-
-def f3[T,S](leftHand: List[T], rightHand: List[S]): String = {
-  val concatList = leftHand.reverse ::: rightHand
-  print(concatList)
-  return concatList.mkString
-}
-
-def f4[T,S](leftHand: List[T], rightHand: List[S]): String ={
-  val leftHandSorted = leftHand.map(x => x.toString().sortBy(_.reverseBytes))
-  val concatList = leftHandSorted ::: rightHand
-  return concatList.mkString
-}
-
-
-applyF_(List(19, 2, 3),List("aa", "b", "c")) (f1)
-applyF_(List(19, 2, 3),List("aa", "b", "c")) (f2)
-applyF_(List(19, 2, 3),List("aa", "b", "c")) (f3)
-applyF_(List(19, 2, 3),List("aa", "b", "c")) (f4)
