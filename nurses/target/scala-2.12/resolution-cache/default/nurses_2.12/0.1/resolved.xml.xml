@@ -4,7 +4,7 @@
 		module="nurses_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20190318185317"
+		publication="20190318185829"
 	>
 		<description>
 		nurses
@@ -34,5 +34,6 @@
 		<dependency org="org.scala-lang" name="scala-library" rev="2.12.8" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="org.scalactic" name="scalactic_2.12" rev="3.0.4" conf="compile->default(compile)"/>
 		<dependency org="org.scalatest" name="scalatest_2.12" rev="3.0.4" conf="test->default(compile)"/>
+		<dependency org="org.scalacheck" name="scalacheck_2.12" rev="1.14.0" conf="test->default(compile)"/>
 	</dependencies>
 </ivy-module>
